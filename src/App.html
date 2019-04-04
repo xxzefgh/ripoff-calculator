@@ -3,20 +3,20 @@
 		<form class="">
 			<div class="tile is-ancestor is-vertical">
 				<div class="tile">
-					<div class="tile is-6 box">
+					<div class="tile is-6 notification is-primary">
 						<label class="">
 							<span>თანხა</span>
 							<input class="" bind:value=amount on:input="updatePayments()" />
 						</label>
 					</div>
-					<div class="tile is-6 box">
+					<div class="tile is-6 notification is-primary">
 						<div>
 							<input id="term" type="range" min="1" max="180" bind:value=term on:input="updatePayments()" />
 							<span id="term-label">{term} თვე</span>
 						</div>
 					</div>
 				</div>
-				<div class="tile box">
+				<div class="tile notification is-primary">
 					<label class="">
 						<span>ეფექტური %</span>
 						<input class="" bind:value=interestRate on:input="updatePayments()" />
