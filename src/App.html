@@ -1,0 +1,93 @@
+<section class="section">
+	<div class="container center">
+		<form class="">
+			<div class="tile is-ancestor is-vertical">
+				<div class="tile">
+					<div class="tile is-6 box">
+						<label class="">
+							<span>თანხა</span>
+							<input class="" bind:value=amount on:input="updatePayments()" />
+						</label>
+					</div>
+					<div class="tile is-6 box">
+						<div>
+							<input id="term" type="range" min="1" max="180" bind:value=term on:input="updatePayments()" />
+							<span id="term-label">{term} თვე</span>
+						</div>
+					</div>
+				</div>
+				<div class="tile box">
+					<label class="">
+						<span>ეფექტური %</span>
+						<input class="" bind:value=interestRate on:input="updatePayments()" />
+					</label>
+				</div>
+			</div>
+			<div>
+				თვეში: {payment.perMonth}
+			</div>
+			<div>
+				სულ: {payment.total}
+			</div>
+			<div>
+				გაძვირება: {payment.interest}
+			</div>
+		</form>
+	</div>
+</section>
+
+<script>
+  function calculatePayPerMonth(amount, interestRate, term) {
+    interestRate = interestRate / 1200;
+    return (amount * interestRate) / (1 - Math.pow(1 / (1 + interestRate), term));
+  }
+
+  export default {
+    data() {
+      return {
+        amount: 10000,
+        term: 12,
+        interestRate: 15,
+        payment: {
+          perMonth: 0,
+          total: 0,
+          interest: 0
+        }
+      };
+    },
+    oncreate() {
+      this.updatePayments();
+    },
+    methods: {
+      calculatePayments(amount, term, interestRate) {
+        if (isNaN(amount) || isNaN(term) || isNaN(interestRate)) return;
+
+        const perMonth = calculatePayPerMonth(amount, interestRate, term).toFixed(
+          2
+        );
+        const total = (Number(perMonth) * term).toFixed(2);
+        const interest = (Number(total) - amount).toFixed(2);
+
+        return {
+          perMonth,
+          total,
+          interest
+        };
+      },
+
+      updatePayments() {
+        const { amount, term, interestRate } = this.get();
+        const payments = this.calculatePayments(amount, term, interestRate);
+
+        if (payments) {
+          this.set({
+            payment: payments
+          });
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+</style>
