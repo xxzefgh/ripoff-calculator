@@ -1,3 +1,3 @@
-*Calculate how much your bank will rip you off*
+**Calculate how much your bank will rip you off**
 
 ---
