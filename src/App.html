@@ -1,47 +1,51 @@
-<section class="section">
-	<div class="hero is-lights">
-		<div class="container center">
-			<form class="">
-				<div class="tile is-ancestor is-vertical">
-					<div class="tile is-parent is-paddingless">
-						<div class="tile is-parent">
-							<div class="tile is-child notification is-primary">
-								<label>
-									<span>თანხა</span>
-									<input style="display: block" bind:value=amount on:input="updatePayments()" />
-								</label>
+<section class="section is-paddingless">
+	<div class="hero is-dark is-fullheight">
+		<div class="hero-body">
+			<div class="container center">
+				<form class="">
+					<div class="tile is-ancestor is-vertical">
+						<div class="tile is-parent is-paddingless">
+							<div class="tile is-parent">
+								<div class="tile is-child notification is-primary">
+									<label class="control">
+										<span>თანხა</span>
+										<input class="input is-shadowless" style="display: block" bind:value=amount on:input="updatePayments()" />
+									</label>
+								</div>
 							</div>
-						</div>
-						<div class="tile is-parent">
-							<div class="tile is-child notification is-info">
-								<label>
-									<span>ეფექტური %</span>
-									<input style="display: block" bind:value=interestRate on:input="updatePayments()" />
-								</label>
-							</div>
+							<div class="tile is-parent">
+								<div class="tile is-child notification is-info">
+									<label class="control">
+										<span>ეფექტური %</span>
+										<input class="input is-shadowless" style="display: block" bind:value=interestRate on:input="updatePayments()" />
+									</label>
+								</div>
 
+							</div>
+						</div>
+						<div class="tile is-parent">
+							<div class="tile is-child notification is-warning">
+								<label class="control">
+									<span>{term} თვე</span>
+									<input class="input is-shadowless" type="range" min="1" max="180"
+									 bind:value=term on:input="updatePayments()" />
+								</label>
+							</div>
 						</div>
 					</div>
-					<div class="tile is-parent">
-						<div class="tile is-child notification is-warning">
-							<label>
-								<span id="term-label">{term} თვე</span>
-								<input style="display: block; width: 100%" id="term" type="range" min="1" max="180" bind:value=term on:input="updatePayments()" />
-							</label>
-						</div>
+					<div>
+						თვეში: {payment.perMonth}
 					</div>
-				</div>
-				<div>
-					თვეში: {payment.perMonth}
-				</div>
-				<div>
-					სულ: {payment.total}
-				</div>
-				<div>
-					გაძვირება: {payment.interest}
-				</div>
-			</form>
+					<div>
+						სულ: {payment.total}
+					</div>
+					<div>
+						გაძვირება: {payment.interest}
+					</div>
+				</form>
+			</div>
 		</div>
+
 	</div>
 </section>
 
