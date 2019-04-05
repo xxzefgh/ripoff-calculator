@@ -1,38 +1,47 @@
 <section class="section">
-	<div class="container center">
-		<form class="">
-			<div class="tile is-ancestor is-vertical">
-				<div class="tile">
-					<div class="tile is-6 notification is-primary">
-						<label class="">
-							<span>თანხა</span>
-							<input class="" bind:value=amount on:input="updatePayments()" />
-						</label>
+	<div class="hero is-lights">
+		<div class="container center">
+			<form class="">
+				<div class="tile is-ancestor is-vertical">
+					<div class="tile is-parent is-paddingless">
+						<div class="tile is-parent">
+							<div class="tile is-child notification is-primary">
+								<label>
+									<span>თანხა</span>
+									<input style="display: block" bind:value=amount on:input="updatePayments()" />
+								</label>
+							</div>
+						</div>
+						<div class="tile is-parent">
+							<div class="tile is-child notification is-info">
+								<label>
+									<span>ეფექტური %</span>
+									<input style="display: block" bind:value=interestRate on:input="updatePayments()" />
+								</label>
+							</div>
+
+						</div>
 					</div>
-					<div class="tile is-6 notification is-primary">
-						<div>
-							<input id="term" type="range" min="1" max="180" bind:value=term on:input="updatePayments()" />
-							<span id="term-label">{term} თვე</span>
+					<div class="tile is-parent">
+						<div class="tile is-child notification is-warning">
+							<label>
+								<span id="term-label">{term} თვე</span>
+								<input style="display: block; width: 100%" id="term" type="range" min="1" max="180" bind:value=term on:input="updatePayments()" />
+							</label>
 						</div>
 					</div>
 				</div>
-				<div class="tile notification is-primary">
-					<label class="">
-						<span>ეფექტური %</span>
-						<input class="" bind:value=interestRate on:input="updatePayments()" />
-					</label>
+				<div>
+					თვეში: {payment.perMonth}
 				</div>
-			</div>
-			<div>
-				თვეში: {payment.perMonth}
-			</div>
-			<div>
-				სულ: {payment.total}
-			</div>
-			<div>
-				გაძვირება: {payment.interest}
-			</div>
-		</form>
+				<div>
+					სულ: {payment.total}
+				</div>
+				<div>
+					გაძვირება: {payment.interest}
+				</div>
+			</form>
+		</div>
 	</div>
 </section>
 
